@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { saveUserCredentials } from "../../utils/auth";
-
-import { Link } from "react-router-dom";
+import { login } from "../../redux/slices/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const LoginForm = () => {
     password: "",
   });
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,13 +20,13 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validUsername = "usuario_prueba";
-    const validPassword = "contraseña_prueba";
+    const validUsername = "edwardb11";
+    const validPassword = "11";
     if (
       formData.username === validUsername &&
       formData.password === validPassword
     ) {
-      saveUserCredentials(formData.username);
+      dispatch(login(formData.username));
       navigate("/");
     } else {
       setError("Credenciales incorrectas");
@@ -39,7 +41,7 @@ const LoginForm = () => {
           id="email"
           className="bg-gray-200 pl-12 py-2 md:py-4 focus:outline-none w-full"
           placeholder="edwardb11"
-          name="username" 
+          name="username"
           value={formData.username}
           onChange={handleChange}
         />
@@ -50,7 +52,7 @@ const LoginForm = () => {
           id="password"
           className="bg-gray-200 pl-12 py-2 md:py-4 focus:outline-none w-full"
           placeholder="Password"
-          name="password" 
+          name="password"
           value={formData.password}
           onChange={handleChange}
         />

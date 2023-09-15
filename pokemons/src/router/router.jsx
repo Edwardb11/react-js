@@ -3,28 +3,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PublicRoute from "./publicRouter";
 import PrivateRoute from "./privateRouter";
 import Login from "../pages/Login";
-import Home from "../pages/Home";
-import { useEffect, useState } from "react";
-import { getUserCredentials } from "../utils/auth";
+import { useSelector } from "react-redux";
+import Home from "../pages/home";
 
 export function Router() {
-  const [isUserLogin, setisUserLogin] = useState();
-
-  useEffect(() => {
-    const user = getUserCredentials();
-    if (user) {
-      setisUserLogin(true);
-    } else {
-      setisUserLogin(false);
-    }
-  }, []);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<PublicRoute isUserLogin={isUserLogin} />}>
+        <Route element={<PublicRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/login" element={<Login />} />
         </Route>
-        <Route element={<PrivateRoute isUserLogin={isUserLogin} />}>
+        <Route element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>

@@ -1,10 +1,10 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-export default function PublicRoute({ isUserLogin }) {
+export default function PublicRoute({ isAuthenticated }) {
   let location = useLocation();
   return (
     <>
-      {isUserLogin ? (
+      {isAuthenticated ? (
         <Navigate to="" state={{ from: location }} replace />
       ) : (
         <Outlet />
