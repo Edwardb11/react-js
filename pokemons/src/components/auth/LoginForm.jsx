@@ -8,6 +8,7 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
+  const [generatedCredentials, setGeneratedCredentials] = useState(null); 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,17 +21,30 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validUsername = "edwardb11";
-    const validPassword = "11";
+    const validUsername = "test";
+    const validPassword = "test";
+
     if (
-      formData.username === validUsername &&
-      formData.password === validPassword
+      (formData.username === validUsername &&
+        formData.password === validPassword) ||
+      (formData.username === generatedCredentials?.username &&
+        formData.password === generatedCredentials?.password)
     ) {
       dispatch(login(formData.username));
       navigate("/");
     } else {
       setError("Credenciales incorrectas");
     }
+  };
+
+  const generateRandomCredentials = () => {
+    const randomUsername = Math.random().toString(36).substring(7); 
+    const randomPassword = Math.random().toString(36).substring(7); 
+    setGeneratedCredentials({
+      username: randomUsername,
+      password: randomPassword,
+    });
+    setFormData({ username: randomUsername, password: randomPassword });
   };
 
   return (
@@ -62,6 +76,19 @@ const LoginForm = () => {
         type="submit">
         Login
       </button>
+      <button
+        className=" text-blue-900 font-medium p-2 md:p-4 mt-4  w-full"
+        type="button"
+        onClick={generateRandomCredentials}>
+        Generar credenciales aleatorias
+      </button>
+      {generatedCredentials && (
+        <div className="mt-4">
+          <p>Credenciales generadas:</p>
+          <p>Usuario: {generatedCredentials.username}</p>
+          <p>Contraseña: {generatedCredentials.password}</p>
+        </div>
+      )}
       {error && <p className="text-red-500">{error}</p>}
     </form>
   );
