@@ -1,10 +1,11 @@
+import Router from "./router/router";
 
-function app() {
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello!
-    </h1>
-  )
+    <>
+      <Router />
+    </>
+  );
 }
 
-export default app
+export default App;
