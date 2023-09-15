@@ -1,20 +1,38 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/slices/auth";
-import { useNavigate } from "react-router-dom";
+import  { useState, useEffect } from "react";
+import { getPokemonList, getPokemonDetails } from "../utils/api";
 
-function Home() {
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+const Home = () => {
+  const [pokemonDetails, setPokemonDetails] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const listData = await getPokemonList();
+        const detailsData = await Promise.all(
+          listData.map((pokemon) => getPokemonDetails(pokemon.name))
+        );
+        setPokemonDetails(detailsData);
+      } catch (error) {
+        console.error("Error fetching Pokémon data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <div>
-      Hello
-      <button onClick={handleLogout}>Logout</button>
+      <h1>List of Pokémon</h1>
+      <div>
+        {pokemonDetails.map((pokemon, index) => (
+          <div key={index}>
+            <img src={pokemon.sprites.back_default} alt={pokemon.name} />
+            <p>Name: {pokemon.name}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default Home;
