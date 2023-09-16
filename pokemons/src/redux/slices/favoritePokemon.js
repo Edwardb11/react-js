@@ -16,9 +16,13 @@ const favoritePokemonSlice = createSlice({
         (pokemon) => pokemon.name !== action.payload.name
       );
     },
+    
+    removeallFavorite: (state) => {
+      state.favorites = [];
+    }
   },
 });
 
-export const { addFavorite, removeFavorite } = favoritePokemonSlice.actions;
+export const { addFavorite, removeFavorite,removeallFavorite } = favoritePokemonSlice.actions;
 
 export default favoritePokemonSlice.reducer;

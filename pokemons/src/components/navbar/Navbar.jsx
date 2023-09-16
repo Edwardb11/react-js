@@ -1,12 +1,14 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../redux/slices/auth";
+import { removeallFavorite } from "../../redux/slices/favoritePokemon";
 
 const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(removeallFavorite());
   };
 
   return (
