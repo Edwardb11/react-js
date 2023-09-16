@@ -1,7 +1,7 @@
 import PokemonCard from "./PokemonCard";
 import useFilter from "../../hooks/useFilter";
 
-const PokemonList = ({ pokemonDetails }) => {
+const PokemonList = ({ pokemonDetails, isFavoritePage }) => {
   const { filterType, filteredPokemon, handleFilterChange } =
     useFilter(pokemonDetails);
 
@@ -19,7 +19,7 @@ const PokemonList = ({ pokemonDetails }) => {
       />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
         {filteredPokemon.map((pokemon, index) => (
-          <PokemonCard key={index} pokemon={pokemon} />
+          <PokemonCard key={index} pokemon={pokemon} isFavoritePage={isFavoritePage} />
         ))}
       </div>
     </div>

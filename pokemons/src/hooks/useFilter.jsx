@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 
 function useFilter(pokemonDetails) {
-  const [filterType, setFilterType] = useState("");
+  const [filterName, setFilterName] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
 
   useEffect(() => {
-    const filtered = pokemonDetails.filter((pokemon) =>
-      pokemon.types.some((type) =>
-        type.type.name.toLowerCase().includes(filterType.toLowerCase())
-      )
-    );
-    setFilteredPokemon(filtered);
-  }, [pokemonDetails, filterType]);
+    if (pokemonDetails) {
+      const filtered = pokemonDetails.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(filterName.toLowerCase())
+      );
+      setFilteredPokemon(filtered);
+    }
+  }, [pokemonDetails, filterName]);
 
   const handleFilterChange = (value) => {
-    setFilterType(value);
+    setFilterName(value);
   };
 
   return {
-    filterType,
+    filterName,
     filteredPokemon,
     handleFilterChange,
   };
