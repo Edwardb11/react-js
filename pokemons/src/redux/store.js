@@ -1,7 +1,6 @@
-// redux/store.js
-
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./slices/auth";
+import favoritePokemonSlice from "./slices/favoritePokemon";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -15,7 +14,7 @@ const persistedReducer = persistReducer(persistConfig, authSlice);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
-
+    favoritePokemon: favoritePokemonSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,11 +1,20 @@
-import  { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../../redux/slices/favoritePokemon";
 
 const PokemonCard = ({ pokemon }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
+  const favoritePokemon = useSelector((state) => state.favoritePokemon.favorites);
+
+  const isFavorite = favoritePokemon.includes(pokemon.name);
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      dispatch(removeFavorite(pokemon.name));
+    } else {
+      dispatch(addFavorite(pokemon.name));
+    }
   };
+
 
   return (
     <div className="bg-white border border-gray-300 shadow-md rounded-lg p-4 m-4 w-72">
