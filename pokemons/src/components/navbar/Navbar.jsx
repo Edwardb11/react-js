@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/slices/auth";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -19,6 +27,13 @@ const Navbar = () => {
               className="text-white hover:text-gray-300 transition duration-300">
               Lista de Pokémon
             </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogout}
+              className="text-white hover:text-gray-300 transition duration-300 cursor-pointer">
+              Cerrar Sesión
+            </button>
           </li>
         </ul>
       </div>
