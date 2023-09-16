@@ -2,7 +2,7 @@ import Navbar from "../components/navbar/Navbar";
 import PokemonList from "../components/pokemons/PokemonList";
 import usePokemonData from "../hooks/usePokemonData";
 
-const Home = () => {
+const HomePage = () => {
   const pokemonDetails = usePokemonData();
 
   return (
@@ -13,4 +13,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

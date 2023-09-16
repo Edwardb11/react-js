@@ -1,6 +1,6 @@
 import LoginForm from "../components/auth/LoginForm";
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <div className="bg-blue-500 h-screen overflow-hidden flex items-center justify-center">
       <div className="bg-white lg:w-5/12 md:w-6/12 w-10/12 shadow-3xl">
@@ -17,4 +17,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

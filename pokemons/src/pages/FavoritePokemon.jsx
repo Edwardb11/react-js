@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Navbar from "../components/navbar/Navbar";
 import PokemonList from "../components/pokemons/PokemonList";
 
-const FavoritePokemon = () => {
+const FavoritePokemonPage = () => {
   const favoritePokemon = useSelector(
     (state) => state.favoritePokemon.favorites
   );
@@ -14,4 +14,4 @@ const FavoritePokemon = () => {
   );
 };
 
-export default FavoritePokemon;
+export default FavoritePokemonPage;
