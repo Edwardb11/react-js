@@ -4,14 +4,18 @@ import { addFavorite, removeFavorite } from "../../redux/slices/favoritePokemon"
 const PokemonCard = ({ pokemon }) => {
   const dispatch = useDispatch();
   const favoritePokemon = useSelector((state) => state.favoritePokemon.favorites);
-
-  const isFavorite = favoritePokemon.includes(pokemon.name);
+  const isFavorite = favoritePokemon.some((fav) => fav.name === pokemon.name);
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      dispatch(removeFavorite(pokemon.name));
+      dispatch(removeFavorite({ name: pokemon.name }));
     } else {
-      dispatch(addFavorite(pokemon.name));
+      dispatch(
+        addFavorite({
+          name: pokemon.name,
+          imageUrl: pokemon.sprites.back_default, 
+        })
+      );
     }
   };
 

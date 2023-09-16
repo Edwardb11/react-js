@@ -9,11 +9,11 @@ const favoritePokemonSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action) => {
-      state.favorites.push(action.payload);
+      state.favorites.push({ name: action.payload.name, imageUrl: action.payload.imageUrl });
     },
     removeFavorite: (state, action) => {
       state.favorites = state.favorites.filter(
-        (pokemonName) => pokemonName !== action.payload
+        (pokemon) => pokemon.name !== action.payload.name
       );
     },
   },
