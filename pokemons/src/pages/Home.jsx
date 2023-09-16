@@ -1,36 +1,12 @@
-import  { useState, useEffect } from "react";
-import { getPokemonList, getPokemonDetails } from "../utils/api";
+import PokemonList from "../components/pokemonList";
+import usePokemonData from "../hooks/usePokemonData";
 
 const Home = () => {
-  const [pokemonDetails, setPokemonDetails] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const listData = await getPokemonList();
-        const detailsData = await Promise.all(
-          listData.map((pokemon) => getPokemonDetails(pokemon.name))
-        );
-        setPokemonDetails(detailsData);
-      } catch (error) {
-        console.error("Error fetching Pokémon data:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
+  const pokemonDetails = usePokemonData();
 
   return (
     <div>
-      <h1>List of Pokémon</h1>
-      <div>
-        {pokemonDetails.map((pokemon, index) => (
-          <div key={index}>
-            <img src={pokemon.sprites.back_default} alt={pokemon.name} />
-            <p>Name: {pokemon.name}</p>
-          </div>
-        ))}
-      </div>
+      <PokemonList pokemonDetails={pokemonDetails} />
     </div>
   );
 };
