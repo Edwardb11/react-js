@@ -9,7 +9,17 @@ const FavoritePokemonPage = () => {
   return (
     <div>
       <Navbar />
-      <PokemonList pokemonDetails={favoritePokemon} isFavoritePage={true} />
+      {favoritePokemon.length === 0 ? (
+        <p className="text-center text-xl mt-8 text-gray-600">
+          No tienes Pokémon favoritos.
+        </p>
+      ) : (
+        <PokemonList
+          pokemonDetails={favoritePokemon}
+          isFavoritePage={true}
+          title={"Pokemones Favoritos"}
+        />
+      )}{" "}
     </div>
   );
 };

@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       <Navbar />
-      <PokemonList pokemonDetails={pokemonDetails} />
+      <PokemonList pokemonDetails={pokemonDetails} title={"Listado de Pokemones"} />
     </div>
   );
 };
