@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PublicRoute from "./publicRouter";
 import PrivateRoute from "./privateRouter";
 import { useSelector } from "react-redux";
-import HomePage from "../pages/home";
-import LoginPage from "../pages/login";
+import LoginPage from "../pages/Login";
 import FavoritePokemonPage from "../pages/FavoritePokemon";
+import HomePage from "../pages/Home";
 
 export function Router() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
