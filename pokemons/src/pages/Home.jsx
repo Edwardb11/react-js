@@ -1,4 +1,5 @@
-import PokemonList from "../components/pokemonList";
+import Navbar from "../components/navbar/Navbar";
+import PokemonList from "../components/pokemons/PokemonList";
 import usePokemonData from "../hooks/usePokemonData";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
 
   return (
     <div>
+      <Navbar />
       <PokemonList pokemonDetails={pokemonDetails} />
     </div>
   );

@@ -1,5 +1,5 @@
 import PokemonCard from "./PokemonCard";
-import useFilter from "../hooks/useFilter";
+import useFilter from "../../hooks/useFilter";
 
 const PokemonList = ({ pokemonDetails }) => {
   const { filterType, filteredPokemon, handleFilterChange } =
